@@ -2,43 +2,6 @@
 # syndicate-ug-http/tasks/main.yml
 # Installs syndicate-ug-http packages
 
-- name: Utilities
-  become: yes
-  apt:
-    name: "{{ item }}"
-    update_cache: yes
-    cache_valid_time: 3600
-    state: installed
-  with_items:
-    - curl
-    - daemon
-    - make
-    - unzip
-
-- name: Create syndicate user
-  user:
-    name: "{{ syndicate_user }}"
-    password: "{{ syndicate_password | password_hash('sha512') }}"
-    shell: /bin/bash
-
-- name: Add syndicate user to sudoers
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: "^%{{ syndicate_user }}"
-    line: "%{{ syndicate_user }} ALL=(ALL) NOPASSWD: ALL"
-
-- name: Copy syndicate user startup and env configuration
-  copy:
-    src: "{{ item }}"
-    dest: "/home/{{ syndicate_user }}"
-    owner: "syndicate"
-    group: "syndicate"
-    mode: "0755"
-  with_items:
-    - .inputrc
-    - .vimrc
-
 - name: Check if node is installed
   stat:
     path: "/usr/bin/node"

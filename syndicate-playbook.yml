@@ -7,4 +7,5 @@
     - common-prep
     - ssh-lockdown
     - ufw
+    - syndicate-commons
     - syndicate

@@ -1,0 +1,5 @@
+---
+# syndicate-commons/defaults/main.yml
+
+syndicate_user: syndicate
+syndicate_password: syndicate

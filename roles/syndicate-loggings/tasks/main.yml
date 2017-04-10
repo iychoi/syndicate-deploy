@@ -1,0 +1,17 @@
+---
+# syndicate-loggings/tasks/main.yml
+# Installs loggers
+
+- name: Add apt repo for logstash packages
+  apt_repository:
+    repo: "deb http://packages.elastic.co/logstash/5.3/debian stable main"
+    state: present
+
+- name: Install logstash packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  with_items:
+    - logstash
