@@ -71,7 +71,7 @@
 
 - name: Download compiled H-Syndicate.jar from butler
   get_url:
-    url: "https://butler.opencloud.cs.arizona.edu/jenkins/job/h-syndicate/lastSuccessfulBuild/artifact/dist/H-Syndicate.jar"
+    url: "https://butler.opencloud.cs.arizona.edu/jenkins/job/h-syndicate/lastSuccessfulBuild/artifact/target/H-Syndicate-1.0.jar"
     dest: "{{ hdfs_lib_dir }}/H-Syndicate.jar"
 
 - name: Download hadoop library dependencies
